@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Your description goes here">
+	<meta name="keywords" content="one, two, three">
+
+	<title>ToDo jquery</title>
+
+	<!-- external CSS link -->
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans:800,800" rel="stylesheet">
+    <style>
+        *{
+    box-sizing: border-box;
+}
+        .title{
+            color: lime;
+        }
+    h1{
+        color: white;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body{
+            background-color: black;
+            margin: 0;
+        }
+        .container{
+    width:35%;
+    margin: 20px auto;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+}
+
+#inputWrapper input{
+    
+    padding: 10px;
+    border-radius: 25px ;
+}
+#inputWrapper input[type]{
+    font-family: monospace;
+    border: none;
+    outline: none;
+    width: 350px;
+    color: rgb(1, 17, 4);
+}
+#inputWrapper #add{
+    /*background-color: #439A86;*/
+    background-color: rgb(20, 243, 39);
+    color: white;
+    height: 40px;
+    width: 40px;
+    border-radius: 15px;
+    cursor: pointer;
+    border: none;
+}
+#inputWrapper #add:hover{
+    opacity: 0.7;
+    
+}
+#todo_list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: 20px;
+}
+ #todo_list li {
+    
+    border:none;
+    border-radius: 25px;
+    border-bottom: 3px ridge rgb(96, 221, 113);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: linen;
+    padding: 10px;
+}
+
+.hi{
+    cursor: pointer;
+   font-size: 15px;
+   color: rgb(12, 150, 23);
+   margin-left: 300px;
+   position: fixed;
+   background-color: black;
+}
+.done{
+    font-size: 15px;
+    color:rgb(247, 9, 9);
+    cursor: pointer;
+    margin-left: 350px;
+    position: fixed;
+    background-color: black;
+}
+</style>
+
+</head>
+
+<body><h1> <span class="title">TODO</span> List App</h1> 
+    <div class="container">
+        <div id="inputWrapper">
+            <input class="i1" type="text" id="enter_task" placeholder="Enter the name to be inserted in the list....">
+            <input type="submit" id="add" value="ADD">
+        </div>
+        <p>
+            <ul id="todo_list">
+            </ul>
+        </p>
+	</div>
+	
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script>
+        var counter = 1;
+
+    function enter_task () {
+        var text = $('#enter_task').val();
+        if(text==""){
+            alert("You must enter the name in the list....");
+        } 
+        else{
+        $("input:text").val("");
+        $('#todo_list').append('<li><span class="t1">'+ text + ' </span><input type="submit" class="hi" id="edit' + counter + '" value="Edit">' + '<input type="submit" class="done" id="delete' + counter + '" value="Delete">' +'</li>');
+          }
+
+        //editing the task in the list
+        $('#edit' + counter).click(function(){
+            $(this).prev().attr('contenteditable','true');
+            $(this).prev().focus();
+        });
+
+        //deleting the task in the list
+        $('#delete' + counter).click(function(){
+            $(this).parent().remove();
+        });
+        counter++;
+        
+        };
+
+        //adding taks in the list
+        $(function() {
+            $('#add').on('click', enter_task);
+        });
+   
+    </script>
+</body>
+
+</html>
